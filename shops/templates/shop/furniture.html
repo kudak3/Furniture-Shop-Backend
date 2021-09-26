@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+
+{% block page %}
+<div class="panel panel-default">
+    <div class="panel panel-heading">
+        <h4 class="panel-title text-center text-white">Furnitures</h4>
+    </div>
+    
+    <div class="panel panel-body">
+    
+    <div>
+        <a href="{% url 'shop-add-furniture' %}" class="btn btn-primary">Add Furniture</a>
+        <br>
+        <br>
+    </div>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Short Description</th>
+                <th>Price</th>
+                <th class="text-center">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for furniture in furnitures %}
+                <tr>
+                    <td scope="row">{{ furniture.id }}</td>
+                    <td><a href="{% url 'shop-edit-furniture' furniture.id %}">{{ furniture.name }}</a></td>
+                    <td>{{ furniture.short_description }}</td>
+                    <td>{{ furniture.price }}</td>
+                    <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ furniture.image }}" width="50" height="50"></td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}

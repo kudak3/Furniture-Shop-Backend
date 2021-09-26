@@ -1,7 +1,7 @@
-Restaurant System Web Application
+ Furniture Shop Web Application
 
 How to Run:
-1. Open a terminal and navigate to Restaurant-System folder
+1. Open a terminal and navigate to Furniture-Shop folder
 2. Run the following command to activate the virtual environment (on Linux)
 
 . venv/bin/activate
@@ -24,4 +24,4 @@ OR
 
 B. Sign Up
 
-Create your own user account and register a restaurant
+Create your own user account and register a shop

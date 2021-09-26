@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Shop{% endblock  %}
+
+{% block script %}
+    <script>
+        $(document).ready(function(){
+            var now = new Date();
+            setInterval(function(){
+                $.ajax({
+                    url: 'api/shop/order/notification/' + now.toISOString() + '/',
+                    method: 'GET',
+                    success: function(data){
+                        if (data['notification'] === 0){
+                            $('.badge badge-danger badge-pill').text('');
+
+                        } else {
+                            $('.badge badge-danger badge-pill').text(data['notification']);
+                        }
+                    }
+                })
+            }, 3000)
+        })
+    </script>
+{% endblock %}
+
+{% block sidebar %}
+
+
+ {% url 'shop-order'  as shop_order_url %}
+ {% url 'shop-furniture'  as shop_furniture_url %}
+ {% url 'shop-report'  as shop_report_url %}
+ {% url 'shop-account'  as shop_account_url %}
+
+<div class="text-center card ">
+    <div class="card-body">
+        <img class="card-img" src="{{ MEDIA_URL }}{{ request.user.shop.logo }}" width="80" height="80">
+        <br>
+        <br>
+        <h4 class="card-title text-white">Hi, {{request.user.get_full_name}}</h4>
+        <h5 class="card-text">{{request.user.shop.name}}</h5>
+    </div>
+</div>
+
+<div class="list-group">
+    <span class="text-uppercase">Dashboard</span>
+
+    <a href="{% url 'shop-order' %}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center {% if request.path == shop_order_url %} active {% endif %} ">
+        Orders
+        <span class="badge badge-danger badge-pill"></span>
+    </a>
+    <a href="{% url 'shop-furniture' %}" class="list-group-item list-group-item-action {% if request.path == shop_furniture_url %} active {% endif %} ">Furniture</a>
+    <a href="{% url 'shop-report' %}" class="list-group-item list-group-item-action {% if request.path == shop_report_url %} active {% endif %}  ">Report</a>
+<br>
+    <span class="text-uppercase">Profile</span>
+    <a href="{% url 'shop-account' %}" class="list-group-item list-group-item-action {% if request.path == shop_account_url %} active {% endif %} ">Account</a>
+</div>
+
+<br>
+
+<div class="text-center">
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+</div>
+
+
+{% endblock  %}

@@ -1,0 +1,67 @@
+{% extends 'shop/base.html' %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+{% endblock %}
+
+{% block page %}
+        <!-- Revenue By Week -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center text-white">Revenue By Week</h4>
+            </div>
+            <div class="panel-body">
+                <canvas id="myChart" height="60"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'bar',
+                    // The data for our dataset
+                        data: {
+                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            datasets: [{
+                                label: 'Revenue By Week',
+                                backgroundColor: 'rgb(54, 162, 235, 0.9)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: {{ revenue }}
+                            }]
+                        },
+
+                        // Configuration options go here
+                        options: {}
+                    });
+                </script>
+            </div>
+        </div>
+        <!-- Orders By Week -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center text-white">Orders By Week</h4>
+            </div>
+            <div class="panel-body">
+                    <canvas id="myOrdersChart" height="60"></canvas>
+                    <script>
+                        var ctx = document.getElementById('myOrdersChart').getContext('2d');
+                        var chart = new Chart(ctx, {
+                        // The type of chart we want to create
+                            type: 'bar',
+                        // The data for our dataset
+                            data: {
+                                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                                datasets: [{
+                                    label: 'Orders By Week',
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    data: {{ orders }}
+                                }]
+                            },
+        
+                                // Configuration options go here
+                            options: {}
+                        });
+                        </script>
+            </div>
+        </div>
+
+{% endblock  %}

@@ -1,0 +1,23 @@
+{% extends 'base_signup.html' %}
+{% load bootstrap4 %}
+
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+{% block heading %}
+    Sign Up
+{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form user_form %}
+          <h2 class="text-center">Create Furniture Shop </h2>
+        {% bootstrap_form shop_form %}
+        <input type="submit" value="Sign Up">
+    </form>
+    <br>
+    <span>Already have an account. </span><a href="{% url 'home' %}">Sign In</a>
+{% endblock %}

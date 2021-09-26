@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web gunicorn restaurant_system.wsgi --log-file -
+web gunicorn furniture_shop_system.wsgi --log-file -
